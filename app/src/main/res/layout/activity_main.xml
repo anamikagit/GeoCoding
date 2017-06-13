@@ -20,37 +20,11 @@
         android:scrollbars="vertical"
         android:enabled="false"/>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addressEdit"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="use_location"
-            android:checked="true"
-            android:onClick="onRadioButtonClicked"/>
-
-        <RadioButton
-            android:id="@+id/radioAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="use_address"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
-
     <Button
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radioGroup"
+        android:layout_below="@id/addressEdit"
         android:layout_centerHorizontal="true"
         android:text="fetch"
         android:onClick="onButtonClicked"/>

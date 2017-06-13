@@ -27,7 +27,7 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
     public static final int USE_ADDRESS_NAME = 1;
     public static final int USE_ADDRESS_LOCATION = 2;
 
-    int fetchType = USE_ADDRESS_LOCATION;
+    //int fetchType = USE_ADDRESS_LOCATION;
 
     private static final String TAG = "MAIN_ACTIVITY_ASYNC";
 
@@ -44,7 +44,7 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
         addressEdit.setEnabled(true);
     }
 
-    public void onRadioButtonClicked(View view) {
+   /* public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
@@ -62,7 +62,7 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
                 }
                 break;
         }
-    }
+    }*/
 
     public void onButtonClicked(View view) {
         new GeocodeAsyncTask().execute();
@@ -83,7 +83,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
             Geocoder geocoder = new Geocoder(MainActivityWithAsyncTask.this, Locale.getDefault());
             List<Address> addresses = null;
 
-            if(fetchType == USE_ADDRESS_NAME) {
                String name = addressEdit.getText().toString();
                 try {
                     addresses = geocoder.getFromLocationName(name, 1);
@@ -91,11 +90,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
                     errorMessage = "Service not available";
                     Log.e(TAG, errorMessage, e);
                 }
-            }
-            else {
-                errorMessage = "Unknown Type";
-                Log.e(TAG, errorMessage);
-            }
 
             if(addresses != null && addresses.size() > 0)
                 return addresses.get(0);
