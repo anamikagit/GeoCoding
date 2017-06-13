@@ -30,10 +30,6 @@ public class GeocodeAddressIntentService extends IntentService {
         String errorMessage = "";
         List<Address> addresses = null;
 
-       // int fetchType = intent.getIntExtra(Constants.FETCH_TYPE_EXTRA, 0);
-       // Log.e(TAG, "fetchType == " + fetchType);
-
-
             String name = intent.getStringExtra(Constants.LOCATION_NAME_DATA_EXTRA);
             try {
                 addresses = geocoder.getFromLocationName(name, 1);
@@ -41,27 +37,6 @@ public class GeocodeAddressIntentService extends IntentService {
                 errorMessage = "Service not available";
                 Log.e(TAG, errorMessage, e);
             }
-
-       /* else if(fetchType == Constants.USE_ADDRESS_LOCATION) {
-            double latitude = intent.getDoubleExtra(Constants.LOCATION_LATITUDE_DATA_EXTRA, 0);
-            double longitude = intent.getDoubleExtra(Constants.LOCATION_LONGITUDE_DATA_EXTRA, 0);
-
-            try {
-                addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            } catch (IOException ioException) {
-                errorMessage = "Service Not Available";
-                Log.e(TAG, errorMessage, ioException);
-            } catch (IllegalArgumentException illegalArgumentException) {
-                errorMessage = "Invalid Latitude or Longitude Used";
-                Log.e(TAG, errorMessage + ". " +
-                        "Latitude = " + latitude + ", Longitude = " +
-                        longitude, illegalArgumentException);
-            }
-        }*/
-        /*else {
-            errorMessage = "Unknown Type";
-            Log.e(TAG, errorMessage);
-        }*/
 
         resultReceiver = intent.getParcelableExtra(Constants.RECEIVER);
         if (addresses == null || addresses.size()  == 0) {
@@ -97,5 +72,4 @@ public class GeocodeAddressIntentService extends IntentService {
         bundle.putString(Constants.RESULT_DATA_KEY, message);
         resultReceiver.send(resultCode, bundle);
     }
-
 }

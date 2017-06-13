@@ -27,8 +27,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
     public static final int USE_ADDRESS_NAME = 1;
     public static final int USE_ADDRESS_LOCATION = 2;
 
-    //int fetchType = USE_ADDRESS_LOCATION;
-
     private static final String TAG = "MAIN_ACTIVITY_ASYNC";
 
     @Override
@@ -43,26 +41,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
 
         addressEdit.setEnabled(true);
     }
-
-   /* public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.radioAddress:
-                if (checked) {
-                    fetchType = USE_ADDRESS_NAME;
-                    addressEdit.setEnabled(true);
-                    addressEdit.requestFocus();
-                }
-                break;
-            case R.id.radioLocation:
-                if (checked) {
-                    fetchType = USE_ADDRESS_LOCATION;
-                    addressEdit.setEnabled(false);
-                }
-                break;
-        }
-    }*/
 
     public void onButtonClicked(View view) {
         new GeocodeAsyncTask().execute();
@@ -93,10 +71,8 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
 
             if(addresses != null && addresses.size() > 0)
                 return addresses.get(0);
-
             return null;
         }
-
         protected void onPostExecute(Address address) {
             if(address == null) {
                 progressBar.setVisibility(View.INVISIBLE);
