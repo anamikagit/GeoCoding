@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class MainActivityWithAsyncTask extends AppCompatActivity {
 
-    EditText latitudeEdit, longitudeEdit, addressEdit;
+    EditText addressEdit;
     ProgressBar progressBar;
     TextView infoText;
     CheckBox checkBox;
@@ -36,8 +36,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*longitudeEdit = (EditText) findViewById(R.id.longitudeEdit);
-        latitudeEdit = (EditText) findViewById(R.id.latitudeEdit);*/
         addressEdit = (EditText) findViewById(R.id.addressEdit);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         infoText = (TextView) findViewById(R.id.infoText);
@@ -51,8 +49,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
             case R.id.radioAddress:
                 if (checked) {
                     fetchType = USE_ADDRESS_NAME;
-                    /*longitudeEdit.setEnabled(false);
-                    latitudeEdit.setEnabled(false);*/
                     addressEdit.setEnabled(true);
                     addressEdit.requestFocus();
                 }
@@ -60,9 +56,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
             case R.id.radioLocation:
                 if (checked) {
                     fetchType = USE_ADDRESS_LOCATION;
-                    /*latitudeEdit.setEnabled(true);
-                    latitudeEdit.requestFocus();
-                    longitudeEdit.setEnabled(true);*/
                     addressEdit.setEnabled(false);
                 }
                 break;
@@ -97,22 +90,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
                     Log.e(TAG, errorMessage, e);
                 }
             }
-           /* else if(fetchType == USE_ADDRESS_LOCATION) {
-               *//* double latitude = Double.parseDouble(latitudeEdit.getText().toString());
-                double longitude = Double.parseDouble(longitudeEdit.getText().toString());*//*
-
-                try {
-                    addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                } catch (IOException ioException) {
-                    errorMessage = "Service Not Available";
-                    Log.e(TAG, errorMessage, ioException);
-                } catch (IllegalArgumentException illegalArgumentException) {
-                    errorMessage = "Invalid Latitude or Longitude Used";
-                    Log.e(TAG, errorMessage + ". " +
-                            "Latitude = " + latitude + ", Longitude = " +
-                            longitude, illegalArgumentException);
-                }
-            }*/
             else {
                 errorMessage = "Unknown Type";
                 Log.e(TAG, errorMessage);
@@ -138,8 +115,7 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 infoText.setVisibility(View.VISIBLE);
                 infoText.setText("Latitude: " + address.getLatitude() + "\n" +
-                        "Longitude: " + address.getLongitude() + "\n" +
-                        "Address: " + addressName);
+                        "Longitude: " + address.getLongitude());
             }
         }
     }

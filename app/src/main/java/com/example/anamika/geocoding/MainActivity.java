@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*longitudeEdit = (EditText) findViewById(R.id.longitudeEdit);
-        latitudeEdit = (EditText) findViewById(R.id.latitudeEdit);*/
         addressEdit = (EditText) findViewById(R.id.addressEdit);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         infoText = (TextView) findViewById(R.id.infoText);
@@ -52,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 if (checked) {
                     fetchAddress = false;
                     fetchType = Constants.USE_ADDRESS_NAME;
-                    /*longitudeEdit.setEnabled(false);
-                    latitudeEdit.setEnabled(false);*/
                     addressEdit.setEnabled(true);
                     addressEdit.requestFocus();
                 }
@@ -62,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 if (checked) {
                     fetchAddress = true;
                     fetchType = Constants.USE_ADDRESS_LOCATION;
-                    /*latitudeEdit.setEnabled(true);
-                    latitudeEdit.requestFocus();
-                    longitudeEdit.setEnabled(true);*/
                     addressEdit.setEnabled(false);
                 }
                 break;
@@ -115,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         infoText.setVisibility(View.VISIBLE);
                         infoText.setText("Latitude: " + address.getLatitude() + "\n" +
-                                "Longitude: " + address.getLongitude() + "\n" +
-                                "Address: " + resultData.getString(Constants.RESULT_DATA_KEY));
+                                "Longitude: " + address.getLongitude());
                     }
                 });
             }
