@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText addressEdit;
     ProgressBar progressBar;
-    TextView infoText;
+    TextView textView_lat;
+    TextView textView_lng;
     CheckBox checkBox;
 
     private static final String TAG = "MAIN_ACTIVITY";
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         addressEdit = (EditText) findViewById(R.id.addressEdit);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        infoText = (TextView) findViewById(R.id.infoText);
+        textView_lat = (TextView) findViewById(R.id.infoText_lat);
+        textView_lng = (TextView) findViewById(R.id.infoText_lng);
         checkBox = (CheckBox) findViewById(R.id.checkbox);
 
         addressEdit.setEnabled(true);
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
             intent.putExtra(Constants.LOCATION_NAME_DATA_EXTRA, addressEdit.getText().toString());
 
-        infoText.setVisibility(View.INVISIBLE);
+        textView_lat.setVisibility(View.VISIBLE);
+        textView_lng.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         Log.e(TAG, "Starting Service");
         startService(intent);
@@ -69,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         progressBar.setVisibility(View.GONE);
-                        infoText.setVisibility(View.VISIBLE);
-                        infoText.setText("Latitude: " + address.getLatitude() + "\n" +
-                                "Longitude: " + address.getLongitude());
+                        //infoText.setVisibility(View.VISIBLE);
+                        textView_lat.setText("Latitude: " + address.getLatitude());
+                        textView_lng.setText("Longitude: " + address.getLongitude());
+
                     }
                 });
             }
@@ -80,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         progressBar.setVisibility(View.GONE);
-                        infoText.setVisibility(View.VISIBLE);
-                        infoText.setText(resultData.getString(Constants.RESULT_DATA_KEY));
+                        //textView_lat.setVisibility(View.VISIBLE);
+                        textView_lat.setText(resultData.getString(Constants.RESULT_DATA_KEY));
+                        textView_lng.setText(resultData.getString(Constants.RESULT_DATA_KEY));
                     }
                 });
             }

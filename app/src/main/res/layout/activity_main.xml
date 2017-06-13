@@ -30,10 +30,17 @@
         android:onClick="onButtonClicked"/>
 
     <TextView
-        android:id="@+id/infoText"
+        android:id="@+id/infoText_lat"
         android:layout_width="match_parent"
+        android:hint="bi"
         android:layout_height="wrap_content"
         android:layout_below="@id/actionButton"/>
+    <TextView
+        android:id="@+id/infoText_lng"
+        android:layout_width="match_parent"
+        android:hint="hi"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infoText_lat"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
