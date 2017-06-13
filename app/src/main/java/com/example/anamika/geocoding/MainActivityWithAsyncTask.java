@@ -24,9 +24,6 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
     TextView infoText;
     CheckBox checkBox;
 
-    public static final int USE_ADDRESS_NAME = 1;
-    public static final int USE_ADDRESS_LOCATION = 2;
-
     private static final String TAG = "MAIN_ACTIVITY_ASYNC";
 
     @Override

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     AddressResultReceiver mResultReceiver;
 
-    EditText latitudeEdit, longitudeEdit, addressEdit;
+    EditText addressEdit;
     ProgressBar progressBar;
     TextView infoText;
     CheckBox checkBox;
-
-    boolean fetchAddress;
-    //int fetchType = Constants.USE_ADDRESS_LOCATION;
 
     private static final String TAG = "MAIN_ACTIVITY";
 
@@ -45,51 +41,15 @@ public class MainActivity extends AppCompatActivity {
         mResultReceiver = new AddressResultReceiver(null);
     }
 
-    /*public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.radioAddress:
-                if (checked) {
-                    fetchAddress = false;
-                    fetchType = Constants.USE_ADDRESS_NAME;
-                    addressEdit.setEnabled(true);
-                    addressEdit.requestFocus();
-                }
-                break;
-            case R.id.radioLocation:
-                if (checked) {
-                    fetchAddress = true;
-                    fetchType = Constants.USE_ADDRESS_LOCATION;
-                    addressEdit.setEnabled(false);
-                }
-                break;
-        }
-    }*/
-
     public void onButtonClicked(View view) {
         Intent intent = new Intent(this, GeocodeAddressIntentService.class);
         intent.putExtra(Constants.RECEIVER, mResultReceiver);
-       // intent.putExtra(Constants.FETCH_TYPE_EXTRA, fetchType);
-
             if(addressEdit.getText().length() == 0) {
                 Toast.makeText(this, "Please enter an address name", Toast.LENGTH_LONG).show();
                 return;
             }
             intent.putExtra(Constants.LOCATION_NAME_DATA_EXTRA, addressEdit.getText().toString());
 
-        /*else {
-            if(latitudeEdit.getText().length() == 0 || longitudeEdit.getText().length() == 0) {
-                Toast.makeText(this,
-                        "Please enter both latitude and longitude",
-                        Toast.LENGTH_LONG).show();
-                return;
-            }
-            intent.putExtra(Constants.LOCATION_LATITUDE_DATA_EXTRA,
-                    Double.parseDouble(latitudeEdit.getText().toString()));
-            intent.putExtra(Constants.LOCATION_LONGITUDE_DATA_EXTRA,
-                    Double.parseDouble(longitudeEdit.getText().toString()));
-        }*/
         infoText.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         Log.e(TAG, "Starting Service");
