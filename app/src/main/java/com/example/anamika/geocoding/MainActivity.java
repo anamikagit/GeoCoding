@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         infoText = (TextView) findViewById(R.id.infoText);
         checkBox = (CheckBox) findViewById(R.id.checkbox);
 
+        addressEdit.setEnabled(true);
+
         mResultReceiver = new AddressResultReceiver(null);
     }
 

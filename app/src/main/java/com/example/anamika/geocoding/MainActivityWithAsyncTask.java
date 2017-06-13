@@ -40,6 +40,8 @@ public class MainActivityWithAsyncTask extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         infoText = (TextView) findViewById(R.id.infoText);
         checkBox = (CheckBox) findViewById(R.id.checkbox);
+
+        addressEdit.setEnabled(true);
     }
 
     public void onRadioButtonClicked(View view) {
